@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    margin: 20px;
+}
+
+h2 {
+    color: #333;
+    background: yellowgreen;
+    padding: 20px;
+}
+
+img {
+    max-height: 500px;
+}
+
