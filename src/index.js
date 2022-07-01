@@ -230,7 +230,7 @@ const ControlBar = playerChildren.indexOf("controlBar");
 
 
 
-playerChildren.splice(ControlBar, 1, "TitleBar2");
+playerChildren.splice(ControlBar, 3, "TitleBar2");
 console.log("======== custom", playerChildren);
 
 var player2 = videojs(
@@ -252,6 +252,6 @@ var player2 = videojs(
   },
   function () {
     this.addClass("vjs-custom");
-    // player.addChild('TitleBar', {text: 'The Title of The Video!'});
+    player.addChild('TitleBar', {text: 'The Title of The Video!'});
   }
 );
