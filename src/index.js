@@ -5,7 +5,7 @@ import "./video-js.css";
 import videojs from "./video.min.js";
 
 //////////////////////////////////////////////////////////
-// Cách 1: class extending Component.
+// Cách 1.1: class extending Component.
 
 // const Component = videojs.getComponent("Component");
 
@@ -35,35 +35,10 @@ import videojs from "./video.min.js";
 
 // videojs.registerComponent("TitleBar", TitleBar);
 
-// // Create a player.
-// var player = videojs(
-//   "my-player",
-//   {
-//     controls: true,
-//     autoplay: false,
-//     preload: "auto",
-//     loop: true,
-//     playbackRates: [0.5, 1, 1.5, 2],
-//     poster:
-//       "https://img.lovepik.com/back_pic/05/51/77/625ae690092f6b8.jpg_wh860.jpg",
-//     sources: [
-//       {
-//         src: "http://vjs.zencdn.net/v/oceans.mp4",
-//         type: "video/mp4",
-//       },
-//     ],
-//   },
-//   function () {
-//     this.addClass("vjs-custom");
-//     // player.addChild('TitleBar', {text: 'The Title of The Video!'});
-//   }
-// );
-
-// player.addChild("TitleBar", { text: "The Title of The Video!" });
 
 /////////////////////////////////////////////
 
-// cach 2: using the videojs.extend()
+// cach 1.2: using the videojs.extend() - DÙNG ADDCHILD -PLAYER (VIDEO 1)
 var Component = videojs.getComponent("Component");
 
 var TitleBar = videojs.extend(Component, {
@@ -87,7 +62,7 @@ var TitleBar = videojs.extend(Component, {
     }
 
     videojs.dom.emptyEl(this.el());
-    videojs.dom.appendContent(this.el(), text);
+    videojs.dom.appendContent(this.el(), text = 'abc');
   },
 });
 
@@ -114,16 +89,12 @@ var player = videojs(
   },
   function () {
     this.addClass("vjs-custom");
-    // player.addChild('TitleBar', {text: 'The Title of The Video!'});
   }
 );
 // Add the TitleBar as a child of the player and provide it some text in its options.
 player.addChild("TitleBar", { text: "The Title of The Video!" });
 
-///////////////////////////////////////////////////
-
 // THÊM NÚT XÓA CẢ VIDEO:
-
 var button = videojs.getComponent("Button");
 var closeButton = videojs.extend(button, {
   constructor: function () {
@@ -134,104 +105,37 @@ var closeButton = videojs.extend(button, {
     this.addClass("vjs-icon-cancel");
   },
   handleClick: function () {
+    // console.log(this.player());
     this.player().dispose();
   },
 });
 
-// var player = videojs(  "my-player",
-// {
-//   controls: true,
-//   autoplay: false,
-//   preload: "auto",
-//   loop: true,
-//   playbackRates: [0.5, 1, 1.5, 2],
-//   poster:
-//     "https://img.lovepik.com/back_pic/05/51/77/625ae690092f6b8.jpg_wh860.jpg",
-//   sources: [
-//     {
-//       src: "http://vjs.zencdn.net/v/oceans.mp4",
-//       type: "video/mp4",
-//     },
-//   ],
-// },
-// function () {
-//   this.addClass("vjs-custom");
-//   // player.addChild('TitleBar', {text: 'The Title of The Video!'});
-// });
-
 videojs.registerComponent("closeButton", closeButton);
 player.getChild("controlBar").addChild("closeButton", {});
 
-// // TEST  TEST
-// // const Component = videojs.getComponent('Component');
 
-// class MyControlBar extends Component {
+/*
+ *
+ *
+ *
+ */
 
-//   createEl() {
-//     return videojs.dom.createEl('div', {
-//       className: 'vjs-control-bar',
-//       text: 'test abc'
-//     });
-//   }
-
-// }
-
-// MyControlBar.prototype.options_ = {
-//   children: [
-//     'componentPlayToggle',
-//     'timePlay',
-//     'Progress',
-//     'volumeComponent',
-//     'FullscreenToggle'
-//   ]
-// };
-
-// Component.registerComponent('MyControlBar', MyControlBar);
-
-////////////////////////////
+//=======================================================
+//=======================================================
+// // CÁCH 2:  CÁCH DÙNG SPLICE THAY THẾ CONTROLBAR của player2
 var Component = videojs.getComponent("Component");
 
-var TitleBar = videojs.extend(Component, {
-  constructor: function (player, options) {
-    Component.apply(this, arguments);
-
-    if (options.text) {
-      this.updateTextContent(options.text);
-    }
-  },
-
-  createEl: function () {
-    return videojs.dom.createEl("div", {
-      className: "123123123",
-      controlText: "abc def",
-    });
-  },
-
-  updateTextContent: function (text) {
-    if (typeof text !== "string") {
-      text = "Title Unknown";
-    }
-
-    videojs.dom.emptyEl(this.el());
-    videojs.dom.appendContent(this.el(), text);
-  },
-});
-
+// Đổi tên thành TitleBar2
 videojs.registerComponent("TitleBar2", TitleBar);
 
-// player.addChild("TitleBar", { text: "The Title of The Video!" });
+// const playerChildren = videojs.getComponent("Player").prototype.options_.children;
 
-const playerChildren =
-  videojs.getComponent("Player").prototype.options_.children;
+// console.log("--------- playerChildren -------------", playerChildren);
 
-console.log("--------- playerChildren -------------", playerChildren);
+// const ControlBar = playerChildren.indexOf("controlBar");
 
-const ControlBar = playerChildren.indexOf("controlBar");
-
-
-
-playerChildren.splice(ControlBar, 3, "TitleBar2");
-console.log("======== custom", playerChildren);
+// playerChildren.splice(ControlBar, 2, "TitleBar2");
+// console.log("======== custom", playerChildren);
 
 var player2 = videojs(
   "my-player2",
@@ -242,7 +146,7 @@ var player2 = videojs(
     loop: true,
     playbackRates: [0.5, 1, 1.5, 2],
     poster:
-      "https://img.lovepik.com/back_pic/05/51/77/625ae690092f6b8.jpg_wh860.jpg",
+      "https://kenh14cdn.com/thumb_w/600/2019/1/18/nwaizzzo6ye7ir5izhnq-15477973817771025704545-crop-15477974935231946985602.jpg",
     sources: [
       {
         src: "http://vjs.zencdn.net/v/oceans.mp4",
@@ -252,6 +156,50 @@ var player2 = videojs(
   },
   function () {
     this.addClass("vjs-custom");
-    player.addChild('TitleBar', {text: 'The Title of The Video!'});
+    player2.addChild("TitleBar2", { text: "NOI DUNG VIDEO 2" });
+  }
+);
+
+
+//=========================================================
+//=========================================================
+// CÁCH 3: CÁCH DÙNG CHO CHILDREN TRONG OPTIONS.
+
+/**
+ * 
+ * 
+ * console.log(playerChildren)
+ *  ['mediaLoader', 'posterImage', 'textTrackDisplay', 'loadingSpinner', 'bigPlayButton',
+ *  'liveTracker', 'controlBar', 'errorDisplay', 'textTrackSettings', 'resizeManager']
+ * 
+ * 
+ */
+
+var player3 = videojs(
+  "my-player3",
+  {
+    controls: true,
+    autoplay: false,
+    preload: "auto",
+    loop: true,
+    playbackRates: [0.5, 1, 1.5, 2],
+    poster:
+      "https://media.vov.vn/uploaded/rftwybrxfmly8uzveukg/2019_06_05/1_copy_ufut.jpg",
+    sources: [
+      {
+        src: "http://vjs.zencdn.net/v/oceans.mp4",
+        type: "video/mp4",
+      },
+    ],
+    children: [
+      'posterImage',
+      'mediaLoader',
+      'bigPlayButton',
+      'TitleBar2'       // cần chèn text vào hiển thị ???
+    ]
+  },
+  function () {
+    player3.addClass("vjs-custom");
+    // player3.addChild("TitleBar2", { text: "NOI DUNG VIDEO 3" });
   }
 );

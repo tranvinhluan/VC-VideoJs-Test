@@ -20,7 +20,7 @@ module.exports = (env) => {
       static: {
         directory: path.resolve(__dirname, "build"),
       },
-      port: 9000,
+      port: 8000,
       open: true,
       hot: true,
       compress: true,
