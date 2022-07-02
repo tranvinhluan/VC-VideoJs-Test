@@ -2,7 +2,9 @@ import "./index.css";
 import "./custom.css";
 import "./styles/demo.scss";
 import "./video-js.css";
-import videojs from "./video.min.js";
+// import videojs from "./video.min.js";
+import videojs from "video.js";
+import "./control-bar/control-bar.js"
 
 //////////////////////////////////////////////////////////
 // Cách 1.1: class extending Component.
@@ -195,7 +197,8 @@ var player3 = videojs(
       'posterImage',
       'mediaLoader',
       'bigPlayButton',
-      'TitleBar2'       // cần chèn text vào hiển thị ???
+      'TitleBar2',    // cần chèn text vào hiển thị ???
+      "MyControlBar"      
     ]
   },
   function () {
@@ -203,3 +206,10 @@ var player3 = videojs(
     // player3.addChild("TitleBar2", { text: "NOI DUNG VIDEO 3" });
   }
 );
+
+
+// =======================================================================================
+// =======================================================================================
+// =======================================================================================
+//              CUSTOM CONTROL BAR.
+
