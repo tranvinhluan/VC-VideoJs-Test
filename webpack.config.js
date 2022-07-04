@@ -15,6 +15,7 @@ module.exports = (env) => {
       // clean: true,
       assetModuleFilename: "[name][ext]",
     },
+    // watch: true,
     // devtool: "inline-source-map",
     devServer: {
       static: {
