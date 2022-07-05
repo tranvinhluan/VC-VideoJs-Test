@@ -1,9 +1,5 @@
 import videojs from "video.js";
-// import './playToggle.js';
-// import './timePlay.js';
-// import './progress/index.js';
-// import './volume/index.js';
-// import './fullScreenToggle.js';
+import "./setting-button.js"
 
 const Component = videojs.getComponent("Component");
 
@@ -17,12 +13,6 @@ class MyControlBar extends Component {
 
 MyControlBar.prototype.options_ = {
   children: [
-    // "componentPlayToggle",
-    // "timePlay",
-    // "Progress",
-    // "volumeComponent",
-    // "FullscreenToggle",
-
     'playToggle',
     // 'volumePanel',
     'currentTimeDisplay',
@@ -39,7 +29,8 @@ MyControlBar.prototype.options_ = {
     'subsCapsButton',
     'audioTrackButton',
     // 'fullscreenToggle',
-    // 'pictureInPictureToggle'
+    // 'pictureInPictureToggle',
+    "SettingButton"
   ],
 };
 

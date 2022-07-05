@@ -1,15 +1,15 @@
 /* vjs-custom */
-.vjs-custom.video-js {
+/* .vjs-custom.video-js {
   color: #dd1c93;
-}
+} */
 
 .vjs-custom .vjs-control {
   color: #d5e221;
 }
 
-.vjs-custom .vjs-button {
+/* .vjs-custom .vjs-button {
   color: rgb(245, 11, 11);
-}
+} */
 
 .vjs-custom .vjs-volume-level,
 .vjs-custom .vjs-play-progress {
@@ -72,3 +72,87 @@
   height: 30px;
 }
 
+/* setting-button */
+.vjs-my__control-bar .vjs-my__setting-button {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.vjs-my__setting-button:hover {
+  cursor: pointer;
+}
+
+.vjs-my__image {
+  width: 100%;
+}
+
+.popup-text {
+  color: white;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.vjs-my__setting-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.vjs-my__setting-button .popup-text {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.vjs-my__setting-button .popup-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.vjs-my__setting-button .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.menu-setting .item-setting {
+  padding: 5px 0;;
+}
+
+.item-setting:hover {
+  cursor: pointer;
+  background-color: rgb(150, 150, 150);
+}

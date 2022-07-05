@@ -10,46 +10,46 @@ import "./control-bar/my-control-bar.js";
 // Cách 1.1: class extending Component.
 var Component = videojs.getComponent("Component");
 
-class TitleBar extends Component {
-  constructor(player, options = {}) {
-    super(player, options);
+// class TitleBar extends Component {
+//   constructor(player, options = {}) {
+//     super(player, options);
 
-    if (options.text) {
-      this.updateTextContent(options.text);
-    }
+//     if (options.text) {
+//       this.updateTextContent(options.text);
+//     }
 
-    console.log(22, 'this', this);
+//     console.log(22, 'this', this);
 
-    console.log(24, "luan - player", player);
-    console.log(25, "luan ", player.options_.textTitleBar);
+//     console.log(24, "luan - player", player);
+//     console.log(25, "luan ", player.options_.textTitleBar);
 
-    console.log(27, "luan - options ", options);
-    console.log(28, "luan ", options.playerOptions.textTitleBar);
+//     console.log(27, "luan - options ", options);
+//     console.log(28, "luan ", options.playerOptions.textTitleBar);
 
-  }
-
-
-  createEl() {
-    let el = videojs.dom.createEl("div", {
-      className: "vjs-title-bar",
-    });
-
-    el.innerHTML = "xin chao"
-    return el;
-  }
+//   }
 
 
-  // updateTextContent(text) {
-  //   if (typeof text !== "string") {
-  //     text = "Title Unknown";
-  //   }
+//   createEl() {
+//     let el = videojs.dom.createEl("div", {
+//       className: "vjs-title-bar",
+//     });
 
-  //   videojs.dom.emptyEl(this.el());
-  //   videojs.dom.appendContent(this.el(), text);
-  // }
-}
+//     el.innerHTML = "xin chao"
+//     return el;
+//   }
 
-videojs.registerComponent("TitleBar", TitleBar);
+
+//   // updateTextContent(text) {
+//   //   if (typeof text !== "string") {
+//   //     text = "Title Unknown";
+//   //   }
+
+//   //   videojs.dom.emptyEl(this.el());
+//   //   videojs.dom.appendContent(this.el(), text);
+//   // }
+// }
+
+// videojs.registerComponent("TitleBar", TitleBar);
 
 /////////////////////////////////////////////
 
@@ -142,7 +142,7 @@ videojs.registerComponent("TitleBar", TitleBar);
 var Component = videojs.getComponent("Component");
 
 // Đổi tên thành TitleBar2
-videojs.registerComponent("TitleBar2", TitleBar);
+// videojs.registerComponent("TitleBar2", TitleBar);
 
 // const playerChildren = videojs.getComponent("Player").prototype.options_.children;
 
@@ -211,7 +211,7 @@ var player3 = videojs(
       "posterImage",
       "mediaLoader",
       "bigPlayButton",
-      "TitleBar2",
+      // "TitleBar2",
       "MyControlBar",
       "ControlBar",
     ],
@@ -221,6 +221,7 @@ var player3 = videojs(
     // player3.addChild("TitleBar2", { text: "NOI DUNG VIDEO 3" });
   }
 );
+
 
 // =======================================================================================
 // =======================================================================================
