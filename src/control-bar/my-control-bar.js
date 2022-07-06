@@ -1,5 +1,7 @@
 import videojs from "video.js";
-import "./setting-button.js"
+import "./setting-button.js";
+import "./next-button.js";
+
 
 const Component = videojs.getComponent("Component");
 
@@ -14,8 +16,9 @@ class MyControlBar extends Component {
 MyControlBar.prototype.options_ = {
   children: [
     'playToggle',
-    // 'volumePanel',
+    "NextButton",
     'currentTimeDisplay',
+    'volumePanel',
     'timeDivider',
     'durationDisplay',
     'progressControl',
@@ -23,14 +26,14 @@ MyControlBar.prototype.options_ = {
     'seekToLive',
     'remainingTimeDisplay',
     'customControlSpacer',
-    // 'playbackRateMenuButton',
+    'playbackRateMenuButton',
     'chaptersButton',
     'descriptionsButton',
     'subsCapsButton',
     'audioTrackButton',
-    // 'fullscreenToggle',
-    // 'pictureInPictureToggle',
-    "SettingButton"
+    "SettingButton",
+    'pictureInPictureToggle',
+    'fullscreenToggle',
   ],
 };
 
