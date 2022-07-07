@@ -8,7 +8,7 @@ import "./control-bar/my-control-bar.js";
 
 //////////////////////////////////////////////////////////
 // Cách 1.1: class extending Component.
-var Component = videojs.getComponent("Component");
+// var Component = videojs.getComponent("Component");
 
 // class TitleBar extends Component {
 //   constructor(player, options = {}) {
@@ -28,7 +28,6 @@ var Component = videojs.getComponent("Component");
 
 //   }
 
-
 //   createEl() {
 //     let el = videojs.dom.createEl("div", {
 //       className: "vjs-title-bar",
@@ -37,7 +36,6 @@ var Component = videojs.getComponent("Component");
 //     el.innerHTML = "xin chao"
 //     return el;
 //   }
-
 
 //   // updateTextContent(text) {
 //   //   if (typeof text !== "string") {
@@ -139,7 +137,7 @@ var Component = videojs.getComponent("Component");
 //=======================================================
 //=======================================================
 // // CÁCH 2:  CÁCH DÙNG SPLICE THAY THẾ CONTROLBAR = title2 của player2
-var Component = videojs.getComponent("Component");
+// var Component = videojs.getComponent("Component");
 
 // Đổi tên thành TitleBar2
 // videojs.registerComponent("TitleBar2", TitleBar);
@@ -190,40 +188,91 @@ var Component = videojs.getComponent("Component");
  *
  */
 
-var player3 = videojs(
-  "my-player3",
-  {
-    textTitleBar: 'asdasdasdasdasd',
-    controls: true,
-    autoplay: false,
-    preload: "auto",
-    loop: true,
-    playbackRates: [0.5, 1, 1.5, 2],
-    poster:
-      "https://media.vov.vn/uploaded/rftwybrxfmly8uzveukg/2019_06_05/1_copy_ufut.jpg",
-    sources: [
-      {
-        src: "http://vjs.zencdn.net/v/oceans.mp4",
-        type: "video/mp4",
-      },
-    ],
-    children: [
-      "posterImage",
-      "mediaLoader",
-      "bigPlayButton",
-      // "TitleBar2",
-      "MyControlBar",
-      "ControlBar",
-    ],
-  },
-  function () {
-    player3.addClass("vjs-custom");
-    // player3.addChild("TitleBar2", { text: "NOI DUNG VIDEO 3" });
-  }
-);
+// var player3 = videojs(
+//   "my-player3",
+//   {
+//     textTitleBar: 'asdasdasdasdasd',
+//     controls: true,
+//     autoplay: false,
+//     preload: "auto",
+//     loop: true,
+//     playbackRates: [0.5, 1, 1.5, 2],
+//     poster:
+//       "https://media.vov.vn/uploaded/rftwybrxfmly8uzveukg/2019_06_05/1_copy_ufut.jpg",
+//     sources: [
+//       {
+//         src: "http://vjs.zencdn.net/v/oceans.mp4",
+//         type: "video/mp4",
+//       },
+//     ],
+//     children: [
+//       "posterImage",
+//       "mediaLoader",
+//       "bigPlayButton",
+//       // "TitleBar2",
+//       "MyControlBar",
+//       "ControlBar",
+//     ],
+//   },
+//   function () {
+//     player3.addClass("vjs-custom");
+//     // player3.addChild("TitleBar2", { text: "NOI DUNG VIDEO 3" });
+//   }
+// );
 
+// =======================================================================================
+// =======================================================================================
+// =======================================================================================
+//              HLS TEST TEST:
 
-// =======================================================================================
-// =======================================================================================
-// =======================================================================================
-//              CUSTOM CONTROL BAR.
+if (Hls.isSupported()) {
+  var video = document.getElementById("video");
+  var hls = new Hls();
+
+  // bind them together
+  hls.attachMedia(video);
+  hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+    console.log("1 - luan ==================","video and hls.js are now bound together !");
+
+    hls.loadSource(
+      "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+    );
+    
+    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+      console.log("2 - luan ==================", data);
+      console.log("3 - luan ==================", 
+        "manifest loaded, found " + data.levels.length + " quality level"
+      );
+    });
+  });
+}
+video.play();
+
+// var player4 = videojs(
+//   "video",
+//   {
+//     controls: true,
+//     autoplay: false,
+//     preload: "auto",
+//     loop: true,
+//     playbackRates: [0.5, 1, 1.5, 2],
+//     sources: [
+//       {
+//         src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
+//         type: "application/x-mpegURL",
+//       },
+//     ],
+//     children: [
+//       "posterImage",
+//       "mediaLoader",
+//       "bigPlayButton",
+//       // "TitleBar2",
+//       "MyControlBar",
+//       "ControlBar",
+//     ],
+//   },
+//   function () {
+//     player4.addClass("vjs-custom");
+//   }
+// );
+
