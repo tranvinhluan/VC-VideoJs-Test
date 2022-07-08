@@ -12,7 +12,7 @@ module.exports = (env) => {
     output: {
       path: path.resolve(__dirname, "./build"),
       filename: "bundle.js",
-      // clean: true,
+      clean: true,
       assetModuleFilename: "[name][ext]",
     },
     // watch: true,

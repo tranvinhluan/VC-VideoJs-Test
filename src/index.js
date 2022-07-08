@@ -225,54 +225,81 @@ import "./control-bar/my-control-bar.js";
 // =======================================================================================
 //              HLS TEST TEST:
 
-if (Hls.isSupported()) {
-  var video = document.getElementById("video");
-  var hls = new Hls();
+// if (Hls.isSupported()) {
+//   var video = document.getElementById("video");
+//   var hls = new Hls();
 
-  // bind them together
-  hls.attachMedia(video);
-  hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-    console.log("1 - luan ==================","video and hls.js are now bound together !");
+//   // bind them together
+//   hls.attachMedia(video);
+//   hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+//     console.log("1 - luan ==================","video and hls.js are now bound together !");
 
-    hls.loadSource(
-      "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
-    );
-    
-    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-      console.log("2 - luan ==================", data);
-      console.log("3 - luan ==================", 
-        "manifest loaded, found " + data.levels.length + " quality level"
-      );
-    });
-  });
-}
-video.play();
+//     hls.loadSource(
+//       "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+//     );
 
-// var player4 = videojs(
-//   "video",
-//   {
-//     controls: true,
-//     autoplay: false,
-//     preload: "auto",
-//     loop: true,
-//     playbackRates: [0.5, 1, 1.5, 2],
-//     sources: [
-//       {
-//         src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
-//         type: "application/x-mpegURL",
-//       },
-//     ],
-//     children: [
-//       "posterImage",
-//       "mediaLoader",
-//       "bigPlayButton",
-//       // "TitleBar2",
-//       "MyControlBar",
-//       "ControlBar",
-//     ],
-//   },
-//   function () {
-//     player4.addClass("vjs-custom");
+//     hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+//       console.log("2 - luan ==================", data);
+//       console.log("3 - luan ==================",
+//         "manifest loaded, found " + data.levels.length + " quality level"
+//       );
+//     });
+//   });
+// }
+// video.play();
+
+//              HLS VÀ VIDEOJS:
+var player4 = videojs(
+  "video",
+  {
+    controls: true,
+    autoplay: false,
+    preload: "auto",
+    // muted: true,
+    loop: true,
+    playbackRates: [0.5, 1, 1.5, 2],
+    sources: [
+      {
+        src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
+        type: "application/x-mpegURL",
+      },
+    ],
+    children: [
+      "posterImage",
+      "mediaLoader",
+      "bigPlayButton",
+      // "TitleBar2",
+      "MyControlBar",
+      "ControlBar",
+    ],
+  },
+  function (event) {
+    // console.log("abc", this);
+    // player4.addClass("vjs-custom");
+  }
+);
+
+
+//================================================================
+//          PLAY AND PAUSE:
+
+// let active = false;
+
+// document.addEventListener("click", function () {
+//   if (!active) {
+//     active = true;
+//     player4.play();
+//     console.log(" true and play =======", active);
 //   }
-// );
+//   else {
+//     active = false;
+//     player4.pause();
+//     console.log("false and pause ======", active);
+//   }
+// });
+
+// player4.muted(true)
+// player4.play()
+
+
 
